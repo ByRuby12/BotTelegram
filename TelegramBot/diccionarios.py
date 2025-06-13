@@ -368,7 +368,7 @@ WELCOME_MESSAGES = {
         "✍️ 请简要描述问题或发送一张照片，以便我们进行分类。"
     ],
     'pt': [
-        "👋 Olá {usuario}, não conseguimos reconhecer o conteúdo da mensagem или foto. 😕",
+        "👋 Olá {usuario}, não conseguimos reconhecer o conteúdo da mensagem ou foto. 😕",
         "✍️ Por favor, descreva brevemente o problema ou envie uma foto para que possamos classificá-lo."
     ],
     'it': [

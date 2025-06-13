@@ -161,11 +161,11 @@ async def manejar_mensaje(update: Update, context: ContextTypes.DEFAULT_TYPE):
     print("Esperando ubicación del usuario...")
 
     await context.bot.send_chat_action(chat_id=update.effective_chat.id, action="typing")
-    await asyncio.sleep(3)
-    await update.message.reply_text(
-        textos['detected'].format(tipo=tipo, categoria=categoria, subcategoria=subcategoria),
-        parse_mode="Markdown"
-    )
+    # await update.message.reply_text(
+    #     textos['detected'].format(tipo=tipo, categoria=categoria, subcategoria=subcategoria),
+    #     parse_mode="Markdown"
+    # )
+    # Comentado para evitar mostrar el mensaje de categoría y subcategoría detectadas al usuario
     await context.bot.send_chat_action(chat_id=update.effective_chat.id, action="typing")
     await asyncio.sleep(3)
     await update.message.reply_text(
@@ -291,11 +291,11 @@ async def manejar_foto_inicial(update: Update, context: ContextTypes.DEFAULT_TYP
     }
     print("Esperando ubicación del usuario...")
     await context.bot.send_chat_action(chat_id=update.effective_chat.id, action="typing")
-    await asyncio.sleep(3)
-    await update.message.reply_text(
-        textos['detected'].format(tipo=tipo, categoria=categoria, subcategoria=subcategoria),
-        parse_mode="Markdown"
-    )
+    # await update.message.reply_text(
+    #     textos['detected'].format(tipo=tipo, categoria=categoria, subcategoria=subcategoria),
+    #     parse_mode="Markdown"
+    # )
+    # Comentado para evitar mostrar el mensaje de categoría y subcategoría detectadas al usuario tras enviar una foto
     await context.bot.send_chat_action(chat_id=update.effective_chat.id, action="typing")
     await asyncio.sleep(3)
     boton_ubicacion = ReplyKeyboardMarkup(
@@ -417,7 +417,6 @@ async def recibir_descripcion_foto(update: Update, context: ContextTypes.DEFAULT
             reply_markup=boton_ubicacion
         )
         return ESPERANDO_UBICACION
-    # Si es texto, flujo normal: eliminar foto_inicial si existe (para que tras ubicación pida foto/video)
     # Si es texto, flujo normal: eliminar foto_inicial si existe (para que tras ubicación pida foto/video)
     context.user_data.pop("foto_inicial", None)
     context.user_data.pop("esperando_descripcion_foto", None)
@@ -702,19 +701,19 @@ async def enviar_reporte_final(datos, textos, descripcion_es, descripcion_origin
                 text=mensaje_grupo,
                 parse_mode="Markdown"
             )
-        respuesta = textos['followup'].format(
-            service_request_id=service_request_id,
-            usuario=datos['usuario'],
-            tipo=datos['tipo'].capitalize(),
-            categoria=datos['categoria'],
-            subcategoria=datos['subcategoria'],
-            latitud=datos['latitud'],
-            longitud=datos['longitud'],
-            descripcion=descripcion_original
-        )
-        await update.message.reply_text(respuesta, parse_mode="Markdown")
+        # respuesta = textos['followup'].format(
+        #     service_request_id=service_request_id,
+        #     usuario=datos['usuario'],
+        #     tipo=datos['tipo'].capitalize(),
+        #     categoria=datos['categoria'],
+        #     subcategoria=datos['subcategoria'],
+        #     latitud=datos['latitud'],
+        #     longitud=datos['longitud'],
+        #     descripcion=descripcion_original
+        # )
+        # await update.message.reply_text(respuesta, parse_mode="Markdown")
         await context.bot.send_chat_action(chat_id=update.effective_chat.id, action="typing")
-        await asyncio.sleep(3)
+        # await asyncio.sleep(3)
         await update.message.reply_text(textos['sent'])
     except Exception as e:
         print(f"❌ Error al enviar reporte final: {e}")
